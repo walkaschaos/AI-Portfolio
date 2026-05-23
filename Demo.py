@@ -106,7 +106,7 @@ elif playbook == "1. Predictive Health Score":
             </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("**Recent Simulated Ticket Text:**")
+        st.markdown("**Recent Simulated Engagement Summary:**")
         if sentiment > 70:
             st.info(""" "Recent engagement data indicates a strong positive shift in account sentiment following the Q3 release. During a routine check-in call last Thursday, the primary platform admin explicitly noted that the new reporting dashboard is 'fantastic' and has directly eliminated their need for manual CSV exports—estimating a time savings of roughly 3 hours per week for their analytics team. This qualitative feedback is corroborated by product telemetry, which shows a 400% week-over-week increase in dashboard interaction by this account. Furthermore, a minor Zendesk ticket regarding a UI bug was resolved in under 2 hours, resulting in a 5/5 CSAT score and a follow-up email from their VP of Operations praising the support team's rapid responsiveness." """)
         elif sentiment > 40:
