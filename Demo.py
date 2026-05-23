@@ -356,15 +356,19 @@ elif playbook == "5. C360 Account Summary":
             "3. BetaFlow (SMB) - The 'Silent' Risk"
         ])
     
-    st.markdown("### Raw Unstructured Data Feed")
-    
     # Dynamic Data based on selection
     if "Acme" in account_scenario:
-        m1, m2, m3, m4 = st.columns(4)
+        m1, m2, m3, m4, m5 = st.columns(5)
         m1.metric("License Utilization", "98%", "+5%", delta_color="normal")
         m2.metric("Open Support Tickets", "1", "-2", delta_color="inverse")
         m3.metric("NPS Score", "8", "+2", delta_color="normal")
         m4.metric("Days to Renewal", "45")
+        m5.metric("CSM Sentiment", "Stable", "Capacity Warning", delta_color="off")
+        
+        st.markdown("### Account Info")
+        st.markdown("""
+        **CSM:** Alex Mercer &nbsp;&nbsp;|&nbsp;&nbsp; **AM:** Sarah Jenkins &nbsp;&nbsp;|&nbsp;&nbsp; **ARR:** $145,000 &nbsp;&nbsp;|&nbsp;&nbsp; **Segment:** Mid-Market &nbsp;&nbsp;|&nbsp;&nbsp; **Last Engagement:** 14 Days Ago
+        """)
         
         crm_data = """
         * **Salesforce:** Key stakeholder update: Previous primary sponsor (VP Marketing) departed; David Chen assumed the role last week. No introductory call logged yet.
@@ -378,11 +382,17 @@ elif playbook == "5. C360 Account Summary":
         next_steps = "1. Bypass standard automated check-in.\n2. Initiate personalized outreach to the new Marketing Director (David Chen) today.\n3. Deliver the successful API resolution as an immediate value-add.\n4. Pivot directly into a capacity planning discussion, positioning a Tier 3 license expansion before the renewal deadline."
 
     elif "TechNova" in account_scenario:
-        m1, m2, m3, m4 = st.columns(4)
+        m1, m2, m3, m4, m5 = st.columns(5)
         m1.metric("License Utilization", "62%", "-23%", delta_color="inverse")
         m2.metric("Open Support Tickets", "5", "+3", delta_color="inverse")
         m3.metric("NPS Score", "4", "-4", delta_color="inverse")
         m4.metric("Days to Renewal", "90")
+        m5.metric("CSM Sentiment", "At Risk", "Frustrated", delta_color="inverse")
+        
+        st.markdown("### Account Info")
+        st.markdown("""
+        **CSM:** Jordan Lee &nbsp;&nbsp;|&nbsp;&nbsp; **AM:** Marcus Vance &nbsp;&nbsp;|&nbsp;&nbsp; **ARR:** $320,000 &nbsp;&nbsp;|&nbsp;&nbsp; **Segment:** Enterprise &nbsp;&nbsp;|&nbsp;&nbsp; **Last Engagement:** 2 Days Ago (Escalation Call)
+        """)
         
         crm_data = """
         * **Salesforce:** Renewal pipeline marked as 'At Risk'. Competitor evaluation field flagged as True.
@@ -396,11 +406,17 @@ elif playbook == "5. C360 Account Summary":
         next_steps = "1. Trigger 'Executive Escalation' Playbook immediately.\n2. Schedule a technical alignment call with the client, the CSM, and a Solutions Architect to provide a workaround for the SSO bug.\n3. Pause all automated marketing and expansion nurtures.\n4. Generate an emergency Value Realization deck highlighting historical ROI to arm their admin against leadership budget cuts."
 
     else:
-        m1, m2, m3, m4 = st.columns(4)
+        m1, m2, m3, m4, m5 = st.columns(5)
         m1.metric("License Utilization", "12%", "-10%", delta_color="inverse")
         m2.metric("Open Support Tickets", "0", "0", delta_color="off")
         m3.metric("NPS Score", "N/A", "0", delta_color="off")
         m4.metric("Days to Renewal", "14")
+        m5.metric("CSM Sentiment", "Green", "Unresponsive", delta_color="off")
+        
+        st.markdown("### Account Info")
+        st.markdown("""
+        **CSM:** Taylor Brooks (Pooled) &nbsp;&nbsp;|&nbsp;&nbsp; **AM:** N/A &nbsp;&nbsp;|&nbsp;&nbsp; **ARR:** $18,500 &nbsp;&nbsp;|&nbsp;&nbsp; **Segment:** SMB / Velocity &nbsp;&nbsp;|&nbsp;&nbsp; **Last Engagement:** 180+ Days Ago
+        """)
         
         crm_data = """
         * **Salesforce:** SMB Tier. No human touchpoints logged in 180 days. Billing credit card is flagged as expiring in 10 days. 
@@ -421,13 +437,12 @@ elif playbook == "5. C360 Account Summary":
             
         st.markdown("### 🤖 Action-Oriented Brief")
         
-        # Color coding the alert type dynamically
         if "EXPANSION" in alert_type:
-            alert_color = "green"
+            alert_color = "#2ECC71" # Green
         elif "SEVERE" in alert_type:
-            alert_color = "red"
+            alert_color = "#E74C3C" # Red
         else:
-            alert_color = "orange"
+            alert_color = "#F1C40F" # Yellow
             
         st.markdown(f"""
         <div style="background-color: #1E2129; padding: 20px; border-radius: 8px; border-left: 5px solid {alert_color};">
