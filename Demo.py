@@ -73,13 +73,12 @@ if playbook == "0. Executive Portfolio & Resume":
         * **Automated digital onboarding and adoption nurtures**, decreasing CSM manual workload by 8–10 hours per week while boosting quarterly product adoption by 20%.
         """)
 
-    with tab2:
+   with tab2:
         st.subheader("The AI-Driven Operations Playbook")
         st.write("My framework for transitioning teams from reactive check-ins to predictive defense.")
-        st.info("To make this interactive, create a free Gamma.app account, import your 'Architecting Scalable Success' PowerPoint, and paste the embed iframe code below.")
         
-        # PASTE YOUR GAMMA IFRAME CODE HERE LATER
-        # components.html(""" <iframe src="YOUR_GAMMA_LINK" ...></iframe> """, height=650)
+        # Embedded Gamma Site
+        components.iframe("https://architecting-scalable-cs-41xuyqd.gamma.site/", height=750, scrolling=True)
 
     with tab3:
         st.subheader("The Vision: Telemetry over Check-ins")
