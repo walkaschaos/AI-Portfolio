@@ -233,7 +233,7 @@ elif playbook == "2. Automated QBR Generator":
         m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} delta")
         
         roi_delta = int(projected_roi - current_roi)
-        m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"+{roi_delta} hrs reclaimed", delta_color="normal")
+        m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"{roi_delta} hrs reclaimed", delta_color="normal")
         
         historical_baseline_line = np.linspace(current_adoption/2, current_adoption, 12)
         projected_trajectory = np.linspace(current_adoption, target_adoption, 12)
