@@ -33,7 +33,7 @@ playbook = st.sidebar.radio("Navigation", [
     "1. Predictive Health Score", 
     "2. Automated QBR Generator", 
     "3. Contextual Release Notes", 
-    "4. Early Warning Adoption", 
+    "4. Adoption Early Warning", 
     "5. C360 Account Summary"
 ])
 
@@ -314,8 +314,8 @@ elif playbook == "3. Contextual Release Notes":
         Sacha
         """)
 
-# --- PLAYBOOK 4: EARLY WARNING ADOPTION ---
-elif playbook == "4. Early Warning Adoption":
+# --- PLAYBOOK 4: Adoption Early Warning ---
+elif playbook == "4. Adoption Early Warning":
     st.title("Trigger-Based Micro-Training")
     st.markdown("Intercepting user friction at the exact moment of struggle to protect adoption and deflect Support tickets.")
     st.divider()
