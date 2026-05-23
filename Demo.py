@@ -345,28 +345,94 @@ elif playbook == "4. Early Warning Adoption":
 # --- PLAYBOOK 5: C360 ACCOUNT SUMMARY ---
 elif playbook == "5. C360 Account Summary":
     st.title("AI C360 Account Synthesis")
-    st.markdown("The 60-Second Prep: Distilling disparate CRM data into immediate context.")
+    st.markdown("The 60-Second Prep: Distilling disparate CRM data into an immediate, action-oriented executive brief.")
     st.divider()
     
-    st.markdown("### Account C360 Data")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Open Support Tickets", "3", "-1")
-    col2.metric("License Utilization", "98%", "Critical")
-    col3.metric("NPS Score", "8", "+2")
+    col_sel, col_empty = st.columns([1, 1])
+    with col_sel:
+        account_scenario = st.selectbox("Select Account Profile to Synthesize:", [
+            "1. Acme Corp (Mid-Market) - Capacity Constrained",
+            "2. TechNova (Enterprise) - High Friction / Escalated",
+            "3. BetaFlow (SMB) - The 'Silent' Risk"
+        ])
     
-    st.info("""
-    **Latest CRM & Telemetry Sync:**
-    * **Salesforce:** Renewal window closes in 45 days. Key stakeholder update: Previous primary sponsor (VP Marketing) departed; David Chen assumed the role last week. No introductory call logged yet.
-    * **Zendesk:** Escalated Ticket #8891 logged last month - "Current API rate limits are bottlenecking our end-of-month reporting pipelines. This is a critical blocker for our analytics team."
-    * **Jira:** Engineering fix deployed to production yesterday (PR #4492) expanding API throughput limits for this specific tenant cluster.
-    """)
+    st.markdown("### Raw Unstructured Data Feed")
+    
+    # Dynamic Data based on selection
+    if "Acme" in account_scenario:
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("License Utilization", "98%", "+5%", delta_color="normal")
+        m2.metric("Open Support Tickets", "1", "-2", delta_color="inverse")
+        m3.metric("NPS Score", "8", "+2", delta_color="normal")
+        m4.metric("Days to Renewal", "45")
+        
+        crm_data = """
+        * **Salesforce:** Key stakeholder update: Previous primary sponsor (VP Marketing) departed; David Chen assumed the role last week. No introductory call logged yet.
+        * **Zendesk:** Escalated Ticket #8891 logged last month - "Current API rate limits are bottlenecking our end-of-month reporting pipelines."
+        * **Jira:** Engineering fix deployed to production yesterday (PR #4492) expanding API throughput limits for this specific tenant cluster.
+        * **Gong:** N/A (No calls in last 30 days).
+        """
+        
+        alert_type = "📈 EXPANSION ALERT"
+        synthesis = "Synthesized CRM and telemetry data indicate a highly engaged account currently restricted by capacity limits. Their primary friction point—a hard cap on API rate limits—caused notable frustration last month, but Jira integration confirms Engineering successfully deployed the expanded endpoint architecture yesterday (Ticket #4492), neutralizing the bottleneck. Contact enrichment flags a newly appointed Marketing Director assumed control last week. Historical churn risk mitigated; account is primed for upsell."
+        next_steps = "1. Bypass standard automated check-in.\n2. Initiate personalized outreach to the new Marketing Director (David Chen) today.\n3. Deliver the successful API resolution as an immediate value-add.\n4. Pivot directly into a capacity planning discussion, positioning a Tier 3 license expansion before the renewal deadline."
+
+    elif "TechNova" in account_scenario:
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("License Utilization", "62%", "-23%", delta_color="inverse")
+        m2.metric("Open Support Tickets", "5", "+3", delta_color="inverse")
+        m3.metric("NPS Score", "4", "-4", delta_color="inverse")
+        m4.metric("Days to Renewal", "90")
+        
+        crm_data = """
+        * **Salesforce:** Renewal pipeline marked as 'At Risk'. Competitor evaluation field flagged as True.
+        * **Zendesk:** 3 Sev-2 tickets opened this week regarding SSO integration failures. Average first-reply time currently missing SLA by 4 hours.
+        * **Jira:** SSO bug mapped to known issue (Epic-882). No ETA on sprint allocation.
+        * **Gong:** Sentiment analysis on yesterday's admin sync flagged keywords: "budget cuts", "leadership is asking for ROI", and "too difficult to manage".
+        """
+        
+        alert_type = "🚨 SEVERE CHURN RISK"
+        synthesis = "Critical degradation across all health pillars. License utilization has plummeted 23% in the last month, directly correlating with 3 open Sev-2 tickets regarding SSO failures. Jira indicates no immediate engineering resolution is planned. Furthermore, Gong conversational intelligence caught the platform admin explicitly mentioning 'budget cuts' and 'ROI scrutiny' from leadership, validating the Salesforce flag for active competitor evaluation. The CSM is currently operating blindly regarding the technical delay."
+        next_steps = "1. Trigger 'Executive Escalation' Playbook immediately.\n2. Schedule a technical alignment call with the client, the CSM, and a Solutions Architect to provide a workaround for the SSO bug.\n3. Pause all automated marketing and expansion nurtures.\n4. Generate an emergency Value Realization deck highlighting historical ROI to arm their admin against leadership budget cuts."
+
+    else:
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("License Utilization", "12%", "-10%", delta_color="inverse")
+        m2.metric("Open Support Tickets", "0", "0", delta_color="off")
+        m3.metric("NPS Score", "N/A", "0", delta_color="off")
+        m4.metric("Days to Renewal", "14")
+        
+        crm_data = """
+        * **Salesforce:** SMB Tier. No human touchpoints logged in 180 days. Billing credit card is flagged as expiring in 10 days. 
+        * **Zendesk:** Zero tickets submitted in the last 6 months.
+        * **Telemetry:** Primary Admin account has not logged in for 45 days. End-user activity is isolated to a single feature (basic exports).
+        * **Gong:** N/A.
+        """
+        
+        alert_type = "⚠️ SILENT RISK (GHOSTING)"
+        synthesis = "This is a classic 'watermelon' account—green on the surface due to a lack of support tickets, but red internally. Zero tickets over 6 months indicates abandonment, not satisfaction, validated by the primary admin failing to log in for 45 days. The account is purely relying on basic exports without adopting any sticky core features. With the renewal in 14 days and the billing mechanism expiring, this account will silently churn via payment failure if not intercepted."
+        next_steps = "1. Trigger automated 'Payment Method Expiring' sequence immediately.\n2. Do NOT send standard renewal templates; deploy the 'Re-engagement / Executive Check-in' email sequence from the VP of CS.\n3. If no response in 48 hours, downgrade forecast probability to 10% and reallocate CSM resources to salvageable pipeline."
+
+    st.info(crm_data)
     
     if st.button("Synthesize Executive Brief"):
-        with st.spinner("Synthesizing..."):
+        with st.spinner("LLM cross-referencing Salesforce, Zendesk, Jira, and Gong..."):
             time.sleep(1.5)
-        st.markdown("### 🤖 Generative Brief for CSM")
-        st.success("""
-        **Account Status: Ready for Expansion.** Synthesized CRM and telemetry data indicate a highly engaged account currently restricted by capacity limits, with license utilization sustaining at 98% for the past three weeks. Cross-referencing historical Zendesk tickets and recent Gong call transcripts reveals that their primary friction point—a hard cap on API rate limits—caused notable frustration during last month's alignment sync. However, Jira integration confirms that Engineering successfully deployed the expanded endpoint architecture yesterday (Ticket #4492), fully neutralizing the bottleneck. Additionally, contact enrichment flags a critical stakeholder shift: a newly appointed Marketing Director assumed control of the platform last week. With the renewal window closing in 45 days, the historical churn risk has been mitigated and the account is primed for a strategic upsell.
+            
+        st.markdown("### 🤖 Action-Oriented Brief")
         
-        **Recommended Action:** Bypass the standard automated check-in sequence. Initiate personalized outreach to the new Marketing Director this afternoon. Lead the conversation by delivering the successful API resolution as an immediate value-add, then pivot directly into a capacity planning discussion. Position a Tier 3 license expansion as the necessary next step to support their current operational volume before the renewal deadline.
-        """)
+        # Color coding the alert type dynamically
+        if "EXPANSION" in alert_type:
+            alert_color = "green"
+        elif "SEVERE" in alert_type:
+            alert_color = "red"
+        else:
+            alert_color = "orange"
+            
+        st.markdown(f"""
+        <div style="background-color: #1E2129; padding: 20px; border-radius: 8px; border-left: 5px solid {alert_color};">
+            <h4 style="color: {alert_color}; margin-top: 0px;">{alert_type}</h4>
+            <p><b>Context & Synthesis:</b><br>{synthesis}</p>
+            <p><b>Recommended Next Steps:</b><br>{next_steps.replace('\n', '<br>')}</p>
+        </div>
+        """, unsafe_allow_html=True)
