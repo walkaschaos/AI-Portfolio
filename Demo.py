@@ -136,8 +136,8 @@ elif playbook == "2. Automated QBR Generator":
     st.divider()
     
     # --- INTERACTIVE ROI SIMULATOR ---
-        st.markdown("### Slide 3: Interactive Value Realization Simulator")
-        st.markdown("Stop presenting static charts. Hand the customer the mouse and let them project their own ROI.")
+    st.markdown("### Slide 3: Interactive Value Realization Simulator")
+    st.markdown("Stop presenting static charts. Hand the customer the mouse and let them project their own ROI.")
         
         # The Interactive Lever
         target_adoption = st.slider("Target Q4 Feature Adoption (Weekly Workflow Triggers):", min_value=100, max_value=2500, value=850, step=50)
