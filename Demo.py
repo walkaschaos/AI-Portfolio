@@ -22,7 +22,7 @@ st.sidebar.markdown("**CS Ops & Strategy Leader**")
 st.sidebar.divider()
 st.sidebar.markdown("Select a module to explore the architecture.")
 playbook = st.sidebar.radio("Navigation", [
-    "0. Executive Portfolio & Resume", 
+    "Executive Portfolio & Resume", 
     "1. Predictive Health Score", 
     "2. Automated QBR Generator", 
     "3. Contextual Release Notes", 
@@ -34,10 +34,10 @@ playbook = st.sidebar.radio("Navigation", [
 if playbook == "0. Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
-    st.write("I build the strategy, Gainsight architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
+    st.write("I build the strategy, tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
 
-    tab1, tab2, tab3 = st.tabs(["Resume & Experience", "Strategy Playbook", "Executive Brief (Video)"])
+    tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook"])
 
     with tab1:
         st.subheader("Customer Success Strategy & Ops Leader")
@@ -101,13 +101,13 @@ elif playbook == "1. Predictive Health Score":
         st.subheader("LLM Sentiment Ingestion Engine")
         sentiment = st.slider("Simulate average tone across Support Tickets & Call Transcripts:", 0, 100, 80)
         
-        st.markdown("**Recent Simulated Ticket Text:**")
+        st.markdown("**Recent Simulated Engagements:**")
         if sentiment > 70:
-            st.info('"The new dashboard update is fantastic. It saved our team 3 hours this week."')
+            st.info('"Recent engagement data indicates a strong positive shift in account sentiment following the Q3 release. During a routine check-in call last Thursday, the primary platform admin explicitly noted that the new reporting dashboard is fantastic and has directly eliminated their need for manual CSV exports—estimating a time savings of roughly 3 hours per week for their analytics team. This qualitative feedback is corroborated by product telemetry, which shows a 400% week-over-week increase in dashboard interaction by this account. Furthermore, a minor Zendesk ticket regarding a UI bug was resolved in under 2 hours, resulting in a 5/5 CSAT score and a follow-up email from their VP of Operations praising the support team's rapid responsiveness."')
         elif sentiment > 40:
-            st.warning('"I am having some trouble finding the export button. Can you point me to the docs?"')
+            st.warning('"Telemetry analysis over the past 14 days indicates an emerging adoption bottleneck within this account's middle-management tier, specifically regarding the Q3 reporting update. A recent Zendesk ticket explicitly stated, 'I am having some trouble finding the export button. Can you point me to the docs?' This qualitative friction is supported by backend product usage data, which shows the user abandoned the export workflow three times prior to submitting the ticket. Additionally, Staircase.AI sentiment analysis on recent email threads indicates a mild increase in frustration markers compared to last quarter, and recent Gong call snippets highlight confusion around the new UI layout. While overall license utilization remains stable, this localized friction presents an early-warning adoption risk. Recommending immediate deployment of contextual micro-training to the affected user cohort to accelerate time-to-value and prevent sentiment degradation."')
         else:
-            st.error('"This is the third time the API has timed out this month. We are evaluating other vendors."')
+            st.error('"Urgent churn risk detected. Telemetry and unstructured communication data indicate a severe degradation in account health over the past 30 days, primarily driven by infrastructure reliability. A Priority 1 support ticket was opened yesterday by their CTO explicitly stating, 'This is the third time the API has timed out this month. We are evaluating other vendors.' This qualitative escalation correlates directly with our backend telemetry, which confirms three distinct periods of elevated API latency exceeding contracted SLA thresholds. Furthermore, Staircase.AI sentiment tracking on the resulting email thread triggered a 'Flight Risk' alert, and a Gong transcript from last week's technical sync captured their Engineering Lead requesting a full export of historical data—a highly predictive leading indicator of competitor migration. With high-value ARR at stake and the renewal window rapidly closing, standard engagement playbooks must be bypassed. Recommending immediate executive alignment and an emergency technical post-mortem with our Product Engineering team to salvage the relationship."')
             
     with col2:
         st.subheader("Dynamic Health Output")
