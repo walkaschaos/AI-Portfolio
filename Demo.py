@@ -289,25 +289,58 @@ elif playbook == "3. Contextual Release Notes":
 # --- PLAYBOOK 4: EARLY WARNING ADOPTION ---
 elif playbook == "4. Early Warning Adoption":
     st.title("Trigger-Based Micro-Training")
-    st.markdown("Intercepting user friction at the exact moment of struggle.")
+    st.markdown("Intercepting user friction at the exact moment of struggle to protect adoption and deflect Support tickets.")
     st.divider()
     
     col1, col2 = st.columns([1, 1])
     
     with col1:
         st.subheader("Telemetry Simulator")
-        st.markdown("Click below to simulate a user repeatedly failing a workflow in the UI.")
-        trigger = st.button("Simulate User Friction (Repeated Clicks/Errors)")
+        st.markdown("Select a live user session to monitor, then simulate a friction event.")
+        
+        scenario = st.selectbox("Active User Session:", [
+            "1. Platform Admin (Acme Corp) - Data Integration Setup",
+            "2. Data Analyst (TechNova) - Custom Report Builder",
+            "3. VP of Sales (BetaFlow) - Forecasting Module"
+        ])
+        
+        trigger = st.button("Simulate UI Friction Event")
         
     with col2:
         st.subheader("System Response")
+        
         if trigger:
-            st.error("⚠️ Alert: User 'jsmith@acme.com' detected abandoning 'Report Export' module.")
-            time.sleep(1)
-            st.success("🤖 AI Action Taken: Targeted 30-second Loom tutorial sent to jsmith@acme.com.")
-            st.info("CSM Dashboard Updated: 'Intervention logged. No human action required.'")
+            with st.spinner("Analyzing telemetry stream..."):
+                time.sleep(1)
+            
+            if "Admin" in scenario:
+                st.error("⚠️ Alert: 'Rage Clicking' detected. User failed API key validation 4 times in 90 seconds.")
+                time.sleep(1)
+                st.success("🤖 AI Action Taken: Automated email dispatched with targeted 45-second Loom tutorial on Auth Token formatting.")
+                st.info("System Log: Gainsight NXT Timeline updated. Intervention successful. No human CSM action required.")
+                
+            elif "Analyst" in scenario:
+                st.warning("⚠️ Alert: 'Idle Hover' detected. User spent 3+ minutes on 'Add Metric' screen without saving or executing.")
+                time.sleep(1)
+                st.success("🤖 AI Action Taken: Triggered contextual in-app modal highlighting the 'Calculated Fields' glossary and a 15-second GIF tutorial.")
+                st.info("System Log: Support ticket successfully deflected. Feature adoption tracking metric incremented.")
+                
+            else: # VP Sales
+                st.error("⚠️ Alert: 'Workflow Abandonment'. Executive user exited the forecasting module after 2 failed filter attempts.")
+                time.sleep(1)
+                st.success("🤖 AI Action Taken: High-value user friction detected. Micro-training suppressed. Drafted high-touch Slack message for CSM review.")
+                
+                st.markdown("""
+                <div class="metric-card" style="margin-top: 10px;">
+                <b>Drafted CSM Message (Pending Approval):</b><br>
+                <i>"Hey Sarah, noticed you were trying to pull the Q3 forecast by territory. The new filtering logic can be tricky—I recorded a quick 30-sec custom walkthrough for you here: [Loom Link]. Let me know if you want me to just build and save the view for you!"</i>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                st.info("System Log: Call-to-Action (CTA) generated in Gainsight. CSM alerted via internal Slack integration.")
+                
         else:
-            st.markdown("Monitoring telemetry stream... System optimal.")
+            st.markdown("Monitoring continuous telemetry stream... System optimal.")
 
 # --- PLAYBOOK 5: C360 ACCOUNT SUMMARY ---
 elif playbook == "5. C360 Account Summary":
