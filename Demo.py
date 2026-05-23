@@ -73,7 +73,7 @@ if playbook == "0. Executive Portfolio & Resume":
         * **Automated digital onboarding and adoption nurtures**, decreasing CSM manual workload by 8–10 hours per week while boosting quarterly product adoption by 20%.
         """)
 
-   with tab2:
+    with tab2:
         st.subheader("The AI-Driven Operations Playbook")
         st.write("My framework for transitioning teams from reactive check-ins to predictive defense.")
         
