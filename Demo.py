@@ -139,38 +139,38 @@ elif playbook == "2. Automated QBR Generator":
     st.markdown("### Slide 3: Interactive Value Realization Simulator")
     st.markdown("Stop presenting static charts. Hand the customer the mouse and let them project their own ROI.")
         
-        # The Interactive Lever
-        target_adoption = st.slider("Target Q4 Feature Adoption (Weekly Workflow Triggers):", min_value=100, max_value=2500, value=850, step=50)
-        
-        # The ROI Math (e.g., 1 workflow saves 0.4 hours)
-        current_adoption = 850
-        current_roi = current_adoption * 0.4
-        projected_roi = target_adoption * 0.4
-        
-        # Real-time Metrics
-        m1, m2, m3 = st.columns(3)
-        m1.metric("Current State", f"{current_adoption} triggers", "Baseline")
-        m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} increase")
-        
-        # The visual hook: Make the ROI metric pop when it increases
-        roi_delta = int(projected_roi - current_roi)
-        m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"+{roi_delta} hrs reclaimed", delta_color="normal")
-        
-        # Dynamic Projection Chart
-        weeks = [f"Wk {i}" for i in range(1, 13)]
-        
-        # Simulate the trajectory from current adoption to target adoption
-        historical_baseline = np.linspace(200, current_adoption, 12)
-        projected_trajectory = np.linspace(current_adoption, target_adoption, 12)
-        
-        chart_data = pd.DataFrame({
-            'Historical Adoption Baseline': historical_baseline,
-            'Customer-Projected Trajectory': projected_trajectory
-        }, index=weeks)
-        
-        # Display the interactive chart
-        st.line_chart(chart_data)
-        st.caption("AI Note for CSM: The customer has established their own success criteria. Document the target of " + str(target_adoption) + " triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")
+    # The Interactive Lever
+    target_adoption = st.slider("Target Q4 Feature Adoption (Weekly Workflow Triggers):", min_value=100, max_value=2500, value=850, step=50)
+    
+    # The ROI Math (e.g., 1 workflow saves 0.4 hours)
+    current_adoption = 850
+    current_roi = current_adoption * 0.4
+    projected_roi = target_adoption * 0.4
+    
+    # Real-time Metrics
+    m1, m2, m3 = st.columns(3)
+    m1.metric("Current State", f"{current_adoption} triggers", "Baseline")
+    m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} increase")
+    
+    # The visual hook: Make the ROI metric pop when it increases
+    roi_delta = int(projected_roi - current_roi)
+    m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"+{roi_delta} hrs reclaimed", delta_color="normal")
+    
+    # Dynamic Projection Chart
+    weeks = [f"Wk {i}" for i in range(1, 13)]
+    
+    # Simulate the trajectory from current adoption to target adoption
+    historical_baseline = np.linspace(200, current_adoption, 12)
+    projected_trajectory = np.linspace(current_adoption, target_adoption, 12)
+    
+    chart_data = pd.DataFrame({
+        'Historical Adoption Baseline': historical_baseline,
+        'Customer-Projected Trajectory': projected_trajectory
+    }, index=weeks)
+    
+    # Display the interactive chart
+    st.line_chart(chart_data)
+    st.caption("AI Note for CSM: The customer has established their own success criteria. Document the target of " + str(target_adoption) + " triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")
 
 # --- PLAYBOOK 3: CONTEXTUAL RELEASE NOTES ---
 elif playbook == "3. Contextual Release Notes":
