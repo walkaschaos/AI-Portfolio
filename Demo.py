@@ -20,7 +20,7 @@ st.markdown("""
 st.sidebar.title("Sacha Laskow")
 st.sidebar.markdown("**CS Ops & Strategy Leader**")
 st.sidebar.divider()
-st.sidebar.markdown("Select a module to explore the architecture.")
+st.sidebar.markdown("Select a module to explore the example architecture.")
 playbook = st.sidebar.radio("Navigation", [
     "Executive Portfolio & Resume", 
     "1. Predictive Health Score", 
@@ -34,7 +34,7 @@ playbook = st.sidebar.radio("Navigation", [
 if playbook == "Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
-    st.write("I build the strategy, Gainsight architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
+    st.write("I build the strategy, tooling & data architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
 
     tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook"])
