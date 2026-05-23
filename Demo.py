@@ -22,7 +22,7 @@ st.sidebar.markdown("**CS Ops & Strategy Leader**")
 st.sidebar.divider()
 st.sidebar.markdown("Select a module to explore the architecture.")
 playbook = st.sidebar.radio("Navigation", [
-    "0. Executive Portfolio & Resume", 
+    "Executive Portfolio & Resume", 
     "1. Predictive Health Score", 
     "2. Automated QBR Generator", 
     "3. Contextual Release Notes", 
@@ -30,8 +30,8 @@ playbook = st.sidebar.radio("Navigation", [
     "5. C360 Account Summary"
 ])
 
-# --- 0. EXECUTIVE PORTFOLIO & RESUME ---
-if playbook == "0. Executive Portfolio & Resume":
+# --- EXECUTIVE PORTFOLIO & RESUME ---
+if playbook == "Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
     st.write("I build the strategy, Gainsight architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
@@ -111,13 +111,13 @@ elif playbook == "1. Predictive Health Score":
         st.subheader("Dynamic Health Output")
         if sentiment > 70:
             st.metric(label="Account Status", value="Healthy", delta="Low Churn Risk")
-            st.success("CSM Action: Monitor normally. Add to advocacy pipeline.")
+            st.success("CSM Action: Monitor normally. Automated email to Advocacy team with a CSQA to add to advocacy pipeline.")
         elif sentiment > 40:
             st.metric(label="Account Status", value="At Risk - Friction Detected", delta="-15 Sentiment Drop", delta_color="inverse")
-            st.warning("CSM Action: Send targeted enablement collateral regarding export features.")
+            st.warning("CSM Action: Automated email sent with targeted enablement collateral regarding export features. Follow up at next meeting")
         else:
             st.metric(label="Account Status", value="Critical - Executive Escalation", delta="-45 Sentiment Drop", delta_color="inverse")
-            st.error("CSM Action: AI Playbook triggered. Immediate executive alignment call scheduled. Renewal flagged.")
+            st.error("CSM Action: Churn Risk Playbook triggered. Immediate executive alignment call scheduled. Renewal flagged in forecast.")
 
 # --- PLAYBOOK 2: AUTOMATED QBR GENERATOR ---
 elif playbook == "2. Automated QBR Generator":
