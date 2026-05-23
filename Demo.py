@@ -43,12 +43,12 @@ if playbook == "Executive Portfolio & Resume":
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
     
     # The UX Anchor for Busy Execs
-    st.info("👈 **Navigation Tip:** Use the sidebar on the left to explore the interactive AI workflows, automated QBR generation, and predictive health telemetry.")
+    st.info("👈 Use the sidebar on the left to explore the interactive AI workflow examples")
     
-    st.write("I build the strategy, data & tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
+    st.write("🚀 I build the strategy, data & tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
 
-    tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook"])
+    tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook Demo"])
 
     with tab1:
         st.subheader("Customer Success Strategy & Ops Leader")
