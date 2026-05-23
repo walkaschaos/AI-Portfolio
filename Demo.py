@@ -128,6 +128,9 @@ elif playbook == "1. Predictive Health Score":
 
 # --- PLAYBOOK 2: AUTOMATED QBR GENERATOR ---
 elif playbook == "2. Automated QBR Generator":
+    import pandas as pd
+    import numpy as np
+    
     st.title("Zero-Touch Automated QBRs")
     st.markdown("Scaling value realization to the long-tail SMB segment.")
     st.divider()
@@ -136,11 +139,12 @@ elif playbook == "2. Automated QBR Generator":
     account = st.selectbox("Account Tier:", ["Mid-Market (Acme Corp)", "SMB (TechNova)", "Startup (BetaFlow)"])
     
     if st.button("Simulate AI QBR Generation"):
-        with st.spinner('Ingesting 90-day telemetry, cross-referencing Salesforce KPIs, formatting PDF...'):
+        with st.spinner('Ingesting 90-day telemetry, cross-referencing Salesforce KPIs, generating value charts...'):
             time.sleep(2)
             
         st.success("✅ QBR Successfully Generated and Queued for CSM Approval.")
         
+        # Generative AI Summary
         st.markdown("### Auto-Generated Executive Summary")
         st.markdown(f"""
         <div class="metric-card">
@@ -153,6 +157,39 @@ elif playbook == "2. Automated QBR Generator":
         </ul>
         </div>
         """, unsafe_allow_html=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        # Dynamic Data Generation based on Account Selection
+        st.markdown("### Slide 3: Adoption vs. ROI (90-Day Trend)")
+        
+        weeks = [f"Wk {i}" for i in range(1, 13)]
+        
+        if "Acme" in account:
+            # High steady growth
+            adoption = np.linspace(200, 850, 12) + np.random.uniform(-30, 30, 12)
+            roi = adoption * 0.4 
+        elif "TechNova" in account:
+            # Mid growth, recent spike
+            adoption = np.concatenate((np.linspace(50, 150, 8), np.linspace(250, 400, 4))) + np.random.uniform(-15, 15, 12)
+            roi = adoption * 0.35
+        else:
+            # Volatile startup growth
+            adoption = np.linspace(10, 150, 12) + np.random.uniform(-25, 25, 12)
+            roi = adoption * 0.5
+            
+        # Ensure no negative numbers from the random variance
+        adoption = np.maximum(adoption, 0)
+        roi = np.maximum(roi, 0)
+            
+        chart_data = pd.DataFrame({
+            'Automated Workflows Triggered (Adoption)': adoption,
+            'Operational Hours Saved (ROI)': roi
+        }, index=weeks)
+        
+        # Display the chart
+        st.area_chart(chart_data)
+        st.caption("AI Note for CSM: Notice the correlation between the workflow adoption spike in Week 8 and the compounding hours saved. Use this visual to justify the expansion proposal.")
 
 # --- PLAYBOOK 3: CONTEXTUAL RELEASE NOTES ---
 elif playbook == "3. Contextual Release Notes":
