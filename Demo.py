@@ -230,7 +230,7 @@ elif playbook == "2. Automated QBR Generator":
         
         m1, m2, m3 = st.columns(3)
         m1.metric("Current State", f"{current_adoption} triggers", "Baseline")
-        m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} increase")
+        m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} delta")
         
         roi_delta = int(projected_roi - current_roi)
         m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"+{roi_delta} hrs reclaimed", delta_color="normal")
