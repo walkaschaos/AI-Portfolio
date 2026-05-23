@@ -1,8 +1,9 @@
 import streamlit as st
 import time
+import streamlit.components.v1 as components
 
 # --- PAGE CONFIG ---
-st.set_page_config(page_title="AI-Driven CS Ops Architecture", layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Sacha Laskow | AI-Driven CS Ops", layout="wide", initial_sidebar_state="expanded")
 
 # --- CUSTOM CSS FOR 'DARK MODE / ENTERPRISE' VIBE ---
 st.markdown("""
@@ -16,9 +17,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- SIDEBAR NAVIGATION ---
-st.sidebar.title("CS Ops Playbooks")
-st.sidebar.markdown("Select a module to simulate the AI architecture.")
+st.sidebar.title("Sacha Laskow")
+st.sidebar.markdown("**CS Ops & Strategy Leader**")
+st.sidebar.divider()
+st.sidebar.markdown("Select a module to explore the architecture.")
 playbook = st.sidebar.radio("Navigation", [
+    "0. Executive Portfolio & Resume", 
     "1. Predictive Health Score", 
     "2. Automated QBR Generator", 
     "3. Contextual Release Notes", 
@@ -26,8 +30,68 @@ playbook = st.sidebar.radio("Navigation", [
     "5. C360 Account Summary"
 ])
 
+# --- 0. EXECUTIVE PORTFOLIO & RESUME ---
+if playbook == "0. Executive Portfolio & Resume":
+    st.title("Architecting Scalable Success in the Age of AI")
+    st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
+    st.write("I build the strategy, Gainsight architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
+    st.divider()
+
+    tab1, tab2, tab3 = st.tabs(["Resume & Experience", "Strategy Playbook", "Executive Brief (Video)"])
+
+    with tab1:
+        st.subheader("Customer Success Strategy & Ops Leader")
+        
+        # Resume Download Logic
+        try:
+            # Make sure you save your Word doc as a PDF and upload it to your GitHub repo with this exact name
+            with open("Sacha_Laskow_Resume.pdf", "rb") as pdf_file:
+                PDFbyte = pdf_file.read()
+            st.download_button(
+                label="📥 Download Full Resume (PDF)",
+                data=PDFbyte,
+                file_name="Sacha_Laskow_Resume.pdf",
+                mime="application/octet-stream"
+            )
+        except FileNotFoundError:
+            st.warning("Resume PDF not found. (Note to self: Upload 'Sacha_Laskow_Resume.pdf' to the GitHub repository).")
+            
+        st.markdown("---")
+        st.markdown("### Customer Success Operations Manager • Spare")
+        st.markdown("*April 2026 – Present*")
+        st.markdown("""
+        * **Architected a new CS Segmentation model** to execute a new Scaled Success motion, automating legacy workflows to instantly free up 15+ hours per week per strategic CSM for high-value engagements.
+        * **Partnered with Forward Deployed Engineering** to launch an AI-driven C360 Customer Health dashboard, empowering the CS team with advanced adoption, expansion and churn risk telemetry.
+        * **Secured executive sponsorship** to overhaul post-sales infrastructure, bridging technical tooling with GTM strategy to drive seamless change management.
+        """)
+
+        st.markdown("### Senior Manager, CS Ops & Strategy • Boomi")
+        st.markdown("*August 2022 – April 2026*")
+        st.markdown("""
+        * **Led enterprise Gainsight architecture and CS strategy**, driving a 50% YoY increase in expansion pipeline and a 30% YoY increase in expansion ARR.
+        * **Directed AI-driven retention initiatives**, deploying machine learning churn models (Reef.AI, Staircase.AI) that surfaced risk signals with 80% accuracy up to 6 months in advance.
+        * **Automated digital onboarding and adoption nurtures**, decreasing CSM manual workload by 8–10 hours per week while boosting quarterly product adoption by 20%.
+        """)
+
+    with tab2:
+        st.subheader("The AI-Driven Operations Playbook")
+        st.write("My framework for transitioning teams from reactive check-ins to predictive defense.")
+        st.info("To make this interactive, create a free Gamma.app account, import your 'Architecting Scalable Success' PowerPoint, and paste the embed iframe code below.")
+        
+        # PASTE YOUR GAMMA IFRAME CODE HERE LATER
+        # components.html(""" <iframe src="YOUR_GAMMA_LINK" ...></iframe> """, height=650)
+
+    with tab3:
+        st.subheader("The Vision: Telemetry over Check-ins")
+        st.write("A brief overview of how I align technical infrastructure with GTM strategy.")
+        st.info("Record a quick 2-minute Loom video walking through your philosophy, and paste the embed link here.")
+        
+        # PASTE YOUR LOOM IFRAME CODE HERE LATER
+        # components.iframe("https://www.loom.com/embed/YOUR_VIDEO_ID", width=700, height=400)
+
+
 # --- PLAYBOOK 1: PREDICTIVE HEALTH SCORE ---
-if playbook == "1. Predictive Health Score":
+elif playbook == "1. Predictive Health Score":
     st.title("Predictive AI Health Score")
     st.markdown("Moving from reactive lagging indicators to proactive sentiment analysis.")
     st.divider()
