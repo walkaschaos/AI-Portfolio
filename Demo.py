@@ -13,6 +13,22 @@ st.markdown("""
     .stButton>button {background-color: #2E86C1; color: white; border-radius: 5px; width: 100%;}
     .stButton>button:hover {background-color: #1B4F72;}
     .metric-card {background-color: #1E2129; padding: 20px; border-radius: 10px; border-left: 5px solid #2E86C1;}
+    
+    /* Force the Streamlit Slider to be Blue instead of Red */
+    .stSlider [data-baseweb="slider"] div[data-testid="stTickBar"] > div {
+        background-color: rgba(46, 134, 193, 0.2) !important;
+    }
+    .stSlider [data-baseweb="slider"] div[role="slider"] {
+        background-color: #2E86C1 !important;
+        border: none !important;
+        box-shadow: 0 0 0 2px #1E2129, 0 0 0 4px #2E86C1 !important;
+    }
+    .stSlider [data-baseweb="slider"] div[role="slider"]:focus {
+        box-shadow: 0 0 0 2px #1E2129, 0 0 0 5px #2E86C1 !important;
+    }
+    .stSlider [data-baseweb="slider"] > div > div > div:nth-child(2) {
+        background-color: #2E86C1 !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -22,7 +38,7 @@ st.sidebar.markdown("**CS Ops & Strategy Leader**")
 st.sidebar.divider()
 st.sidebar.markdown("Select a module to explore the architecture.")
 playbook = st.sidebar.radio("Navigation", [
-    "Executive Portfolio & Resume", 
+    "0. Executive Portfolio & Resume", 
     "1. Predictive Health Score", 
     "2. Automated QBR Generator", 
     "3. Contextual Release Notes", 
@@ -34,7 +50,7 @@ playbook = st.sidebar.radio("Navigation", [
 if playbook == "0. Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
-    st.write("I build the strategy, tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
+    st.write("I build the strategy, Gainsight architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
 
     tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook"])
@@ -44,7 +60,6 @@ if playbook == "0. Executive Portfolio & Resume":
         
         # Resume Download Logic
         try:
-            # Make sure you save your Word doc as a PDF and upload it to your GitHub repo with this exact name
             with open("Sacha_Laskow_Resume.pdf", "rb") as pdf_file:
                 PDFbyte = pdf_file.read()
             st.download_button(
@@ -80,9 +95,8 @@ if playbook == "0. Executive Portfolio & Resume":
         # Embedded Gamma Site
         components.iframe("https://architecting-scalable-cs-41xuyqd.gamma.site/", height=750, scrolling=True)
 
-
 # --- PLAYBOOK 1: PREDICTIVE HEALTH SCORE ---
-if playbook == "1. Predictive Health Score":
+elif playbook == "1. Predictive Health Score":
     st.title("Predictive AI Health Score")
     st.markdown("Moving from reactive lagging indicators to proactive sentiment analysis.")
     st.divider()
@@ -93,10 +107,10 @@ if playbook == "1. Predictive Health Score":
         st.subheader("LLM Sentiment Ingestion Engine")
         sentiment = st.slider("Simulate average tone across Support Tickets & Call Transcripts:", 0, 100, 80)
         
-        # Dynamic HTML Health Bar
+        # Dynamic HTML Health Bar (Margin adjusted to 5px to prevent clipping)
         bar_color = "#2ECC71" if sentiment > 70 else "#F1C40F" if sentiment > 40 else "#E74C3C"
         st.markdown(f"""
-            <div style="width: 100%; background-color: #1E2129; border-radius: 5px; margin-top: -15px; margin-bottom: 20px;">
+            <div style="width: 100%; background-color: #1E2129; border-radius: 5px; margin-top: 5px; margin-bottom: 20px;">
                 <div style="width: {sentiment}%; height: 12px; background-color: {bar_color}; border-radius: 5px; transition: width 0.3s, background-color 0.3s;"></div>
             </div>
         """, unsafe_allow_html=True)
