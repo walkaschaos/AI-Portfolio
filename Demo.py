@@ -205,7 +205,7 @@ elif playbook == "5. C360 Account Summary":
     st.markdown("The 60-Second Prep: Distilling disparate CRM data into immediate context.")
     st.divider()
     
-    st.markdown("### Raw Unstructured Data (Salesforce + Zendesk + Jira)")
+    st.markdown("### Account C360 Data")
     col1, col2, col3 = st.columns(3)
     col1.metric("Open Support Tickets", "3", "-1")
     col2.metric("License Utilization", "98%", "Critical")
@@ -218,7 +218,7 @@ elif playbook == "5. C360 Account Summary":
             time.sleep(1.5)
         st.markdown("### 🤖 Generative Brief for CSM")
         st.success("""
-        **Account Status: Ready for Expansion.** The client is currently maxing out their license tier (98% utilization) and is approaching renewal in 45 days. The major technical blocker (API limit cap) that caused frustration last month was resolved by Engineering yesterday (Ticket #4492). 
+        **Account Status: Ready for Expansion.** Synthesized CRM and telemetry data indicate a highly engaged account currently restricted by capacity limits, with license utilization sustaining at 98% for the past three weeks. Cross-referencing historical Zendesk tickets and recent Gong call transcripts reveals that their primary friction point—a hard cap on API rate limits—caused notable frustration during last month's alignment sync. However, Jira integration confirms that Engineering successfully deployed the expanded endpoint architecture yesterday (Ticket #4492), fully neutralizing the bottleneck. Additionally, contact enrichment flags a critical stakeholder shift: a newly appointed Marketing Director assumed control of the platform last week. With the renewal window closing in 45 days, the historical churn risk has been mitigated and the account is primed for a strategic upsell.
         
-        **Recommended Action:** Reach out to the newly appointed Marketing Director today. Frame the conversation around the successful API fix, and immediately pivot to an expansion proposal for the next licensing tier before the renewal window closes.
+        **Recommended Action:** Bypass the standard automated check-in sequence. Initiate personalized outreach to the new Marketing Director this afternoon. Lead the conversation by delivering the successful API resolution as an immediate value-add, then pivot directly into a capacity planning discussion. Position a Tier 3 license expansion as the necessary next step to support their current operational volume before the renewal deadline.
         """)
