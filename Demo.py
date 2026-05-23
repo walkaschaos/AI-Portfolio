@@ -211,7 +211,12 @@ elif playbook == "5. C360 Account Summary":
     col2.metric("License Utilization", "98%", "Critical")
     col3.metric("NPS Score", "8", "+2")
     
-    st.code("Notes: Client frustrated last month by API limit cap. Engineering pushed fix ticket #4492 yesterday. Renewal date is 45 days away. Marketing director changed last week.")
+    st.info("""
+    **Latest CRM & Telemetry Sync:**
+    * **Salesforce:** Renewal window closes in 45 days. Key stakeholder update: Previous primary sponsor (VP Marketing) departed; David Chen assumed the role last week. No introductory call logged yet.
+    * **Zendesk:** Escalated Ticket #8891 logged last month - "Current API rate limits are bottlenecking our end-of-month reporting pipelines. This is a critical blocker for our analytics team."
+    * **Jira:** Engineering fix deployed to production yesterday (PR #4492) expanding API throughput limits for this specific tenant cluster.
+    """)
     
     if st.button("Synthesize Executive Brief"):
         with st.spinner("Synthesizing..."):
