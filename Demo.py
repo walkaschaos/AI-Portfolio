@@ -44,7 +44,7 @@ if playbook == "0. Executive Portfolio & Resume":
         
         # Resume Download Logic
         try:
-            with open("Sacha_Laskow_Resume.pdf", "rb") as pdf_file:
+            with open("Sacha_Laskow_Resume_2026.pdf", "rb") as pdf_file:
                 PDFbyte = pdf_file.read()
             st.download_button(
                 label="📥 Download Full Resume (PDF)",
