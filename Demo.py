@@ -17,10 +17,17 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- SIDEBAR NAVIGATION ---
+try:
+    # Add your profile picture and scale it to fit the sidebar
+    st.sidebar.image("Sacha_Headshot.png", use_container_width=True)
+except Exception:
+    # If the picture isn't uploaded yet, silently skip it without crashing
+    pass
+
 st.sidebar.title("Sacha Laskow")
 st.sidebar.markdown("**CS Ops & Strategy Leader**")
 st.sidebar.divider()
-st.sidebar.markdown("Select a module to explore the example architecture.")
+st.sidebar.markdown("Select a module to explore the architecture.")
 playbook = st.sidebar.radio("Navigation", [
     "Executive Portfolio & Resume", 
     "1. Predictive Health Score", 
