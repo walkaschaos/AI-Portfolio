@@ -49,7 +49,7 @@ if playbook == "0. Executive Portfolio & Resume":
             st.download_button(
                 label="📥 Download Full Resume (PDF)",
                 data=PDFbyte,
-                file_name="Sacha_Laskow_Resume.pdf",
+                file_name="Sacha_Laskow_Resume_2026.pdf",
                 mime="application/octet-stream"
             )
         except FileNotFoundError:
