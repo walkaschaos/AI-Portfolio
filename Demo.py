@@ -135,42 +135,88 @@ elif playbook == "2. Automated QBR Generator":
     st.markdown("Scaling value realization to the long-tail SMB segment.")
     st.divider()
     
-    # --- INTERACTIVE ROI SIMULATOR ---
-    st.markdown("### Slide 3: Interactive Value Realization Simulator")
-    st.markdown("Stop presenting static charts. Hand the customer the mouse and let them project their own ROI.")
+    st.markdown("### Select Account to Generate:")
+    account = st.selectbox("Account Tier:", ["Mid-Market (Acme Corp)", "SMB (TechNova)", "Startup (BetaFlow)"])
+    
+    if st.button("Simulate AI QBR Generation"):
+        with st.spinner('Ingesting 90-day telemetry, cross-referencing Salesforce KPIs, generating value charts...'):
+            time.sleep(2)
+            
+        st.success("✅ QBR Successfully Generated and Queued for CSM Approval.")
         
-    # The Interactive Lever
-    target_adoption = st.slider("Target Q4 Feature Adoption (Weekly Workflow Triggers):", min_value=100, max_value=2500, value=850, step=50)
-    
-    # The ROI Math (e.g., 1 workflow saves 0.4 hours)
-    current_adoption = 850
-    current_roi = current_adoption * 0.4
-    projected_roi = target_adoption * 0.4
-    
-    # Real-time Metrics
-    m1, m2, m3 = st.columns(3)
-    m1.metric("Current State", f"{current_adoption} triggers", "Baseline")
-    m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} increase")
-    
-    # The visual hook: Make the ROI metric pop when it increases
-    roi_delta = int(projected_roi - current_roi)
-    m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"+{roi_delta} hrs reclaimed", delta_color="normal")
-    
-    # Dynamic Projection Chart
-    weeks = [f"Wk {i}" for i in range(1, 13)]
-    
-    # Simulate the trajectory from current adoption to target adoption
-    historical_baseline = np.linspace(200, current_adoption, 12)
-    projected_trajectory = np.linspace(current_adoption, target_adoption, 12)
-    
-    chart_data = pd.DataFrame({
-        'Historical Adoption Baseline': historical_baseline,
-        'Customer-Projected Trajectory': projected_trajectory
-    }, index=weeks)
-    
-    # Display the interactive chart
-    st.line_chart(chart_data)
-    st.caption("AI Note for CSM: The customer has established their own success criteria. Document the target of " + str(target_adoption) + " triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")
+        # --- SLIDE 1: GENERATIVE SUMMARY ---
+        st.markdown("### Slide 1: Auto-Generated Executive Summary")
+        st.markdown(f"""
+        <div class="metric-card">
+        <h4>{account} - Q3 Value Realization</h4>
+        <ul>
+            <li><b>Goal Achievement:</b> Processed 14,500 transactions (112% of baseline goal).</li>
+            <li><b>Time Saved:</b> AI workflows saved the client an estimated 45 operational hours.</li>
+            <li><b>Adoption Metric:</b> 85% of active users have logged in the past 7 days.</li>
+            <li><b>Recommended Next Step:</b> Upgrade API limits to accommodate Q4 seasonal volume spikes.</li>
+        </ul>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        # --- SLIDE 2: HISTORICAL TREND ---
+        st.markdown("### Slide 2: Adoption vs. ROI (90-Day Historical Trend)")
+        
+        weeks = [f"Wk {i}" for i in range(1, 13)]
+        
+        if "Acme" in account:
+            adoption = np.linspace(200, 850, 12) + np.random.uniform(-30, 30, 12)
+            roi = adoption * 0.4 
+        elif "TechNova" in account:
+            adoption = np.concatenate((np.linspace(50, 150, 8), np.linspace(250, 400, 4))) + np.random.uniform(-15, 15, 12)
+            roi = adoption * 0.35
+        else:
+            adoption = np.linspace(10, 150, 12) + np.random.uniform(-25, 25, 12)
+            roi = adoption * 0.5
+            
+        adoption = np.maximum(adoption, 0)
+        roi = np.maximum(roi, 0)
+            
+        historical_chart_data = pd.DataFrame({
+            'Automated Workflows Triggered (Adoption)': adoption,
+            'Operational Hours Saved (ROI)': roi
+        }, index=weeks)
+        
+        st.area_chart(historical_chart_data)
+        st.caption("AI Note for CSM: Notice the correlation between the workflow adoption spikes and compounding hours saved. Use this historical visual to anchor the expansion proposal.")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        # --- SLIDE 3: INTERACTIVE SIMULATOR ---
+        st.markdown("### Slide 3: Interactive Value Realization Simulator")
+        st.markdown("Stop presenting static charts. Hand the customer the mouse and let them project their own ROI.")
+        
+        # Inherit the final adoption number from the historical chart to use as the baseline
+        current_adoption = int(adoption[-1])
+        
+        target_adoption = st.slider("Target Q4 Feature Adoption (Weekly Workflow Triggers):", min_value=100, max_value=2500, value=max(current_adoption + 200, 850), step=50)
+        
+        current_roi = current_adoption * 0.4
+        projected_roi = target_adoption * 0.4
+        
+        m1, m2, m3 = st.columns(3)
+        m1.metric("Current State", f"{current_adoption} triggers", "Baseline")
+        m2.metric("Target State", f"{target_adoption} triggers", f"{target_adoption - current_adoption} increase")
+        
+        roi_delta = int(projected_roi - current_roi)
+        m3.metric("Projected Q4 Hours Saved", f"{int(projected_roi)} hrs", f"+{roi_delta} hrs reclaimed", delta_color="normal")
+        
+        historical_baseline_line = np.linspace(current_adoption/2, current_adoption, 12)
+        projected_trajectory = np.linspace(current_adoption, target_adoption, 12)
+        
+        projection_chart_data = pd.DataFrame({
+            'Historical Adoption Baseline': historical_baseline_line,
+            'Customer-Projected Trajectory': projected_trajectory
+        }, index=weeks)
+        
+        st.line_chart(projection_chart_data)
+        st.caption(f"AI Note for CSM: The customer has established their own success criteria. Document the target of {target_adoption} triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")
 
 # --- PLAYBOOK 3: CONTEXTUAL RELEASE NOTES ---
 elif playbook == "3. Contextual Release Notes":
