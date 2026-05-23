@@ -80,14 +80,6 @@ if playbook == "0. Executive Portfolio & Resume":
         # Embedded Gamma Site
         components.iframe("https://architecting-scalable-cs-41xuyqd.gamma.site/", height=750, scrolling=True)
 
-    with tab3:
-        st.subheader("The Vision: Telemetry over Check-ins")
-        st.write("A brief overview of how I align technical infrastructure with GTM strategy.")
-        st.info("Record a quick 2-minute Loom video walking through your philosophy, and paste the embed link here.")
-        
-        # PASTE YOUR LOOM IFRAME CODE HERE LATER
-        # components.iframe("https://www.loom.com/embed/YOUR_VIDEO_ID", width=700, height=400)
-
 
 # --- PLAYBOOK 1: PREDICTIVE HEALTH SCORE ---
 if playbook == "1. Predictive Health Score":
@@ -100,6 +92,14 @@ if playbook == "1. Predictive Health Score":
     with col1:
         st.subheader("LLM Sentiment Ingestion Engine")
         sentiment = st.slider("Simulate average tone across Support Tickets & Call Transcripts:", 0, 100, 80)
+        
+        # Dynamic HTML Health Bar
+        bar_color = "#2ECC71" if sentiment > 70 else "#F1C40F" if sentiment > 40 else "#E74C3C"
+        st.markdown(f"""
+            <div style="width: 100%; background-color: #1E2129; border-radius: 5px; margin-top: -15px; margin-bottom: 20px;">
+                <div style="width: {sentiment}%; height: 12px; background-color: {bar_color}; border-radius: 5px; transition: width 0.3s, background-color 0.3s;"></div>
+            </div>
+        """, unsafe_allow_html=True)
         
         st.markdown("**Recent Simulated Ticket Text:**")
         if sentiment > 70:
