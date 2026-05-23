@@ -37,11 +37,15 @@ playbook = st.sidebar.radio("Navigation", [
     "5. C360 Account Summary"
 ])
 
-# --- EXECUTIVE PORTFOLIO & RESUME ---
+# --- XECUTIVE PORTFOLIO & RESUME ---
 if playbook == "Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
-    st.write("I build the strategy, tooling & data architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
+    
+    # The UX Anchor for Busy Execs
+    st.info("👈 **Navigation Tip:** Use the sidebar on the left to explore the interactive AI workflows, automated QBR generation, and predictive health telemetry.")
+    
+    st.write("I build the strategy, data & tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
 
     tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook"])
