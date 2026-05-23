@@ -37,7 +37,7 @@ playbook = st.sidebar.radio("Navigation", [
     "5. C360 Account Summary"
 ])
 
-# --- XECUTIVE PORTFOLIO & RESUME ---
+# --- EXECUTIVE PORTFOLIO & RESUME ---
 if playbook == "Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
@@ -142,10 +142,27 @@ elif playbook == "2. Automated QBR Generator":
     st.markdown("### Select Account to Generate:")
     account = st.selectbox("Account Tier:", ["Mid-Market (Acme Corp)", "SMB (TechNova)", "Startup (BetaFlow)"])
     
+    # --- SESSION STATE MANAGEMENT ---
+    # Initialize the memory state if it doesn't exist
+    if "qbr_generated" not in st.session_state:
+        st.session_state.qbr_generated = False
+    if "current_account" not in st.session_state:
+        st.session_state.current_account = account
+        
+    # Reset the view if they select a new account from the dropdown
+    if st.session_state.current_account != account:
+        st.session_state.qbr_generated = False
+        st.session_state.current_account = account
+    
+    # The button now just flips the memory switch
     if st.button("Simulate AI QBR Generation"):
         with st.spinner('Ingesting 90-day telemetry, cross-referencing Salesforce KPIs, generating value charts...'):
+            import time
             time.sleep(2)
-            
+        st.session_state.qbr_generated = True
+        
+    # The actual output is tied to the memory state, so it survives slider interactions
+    if st.session_state.qbr_generated:
         st.success("✅ QBR Successfully Generated and Queued for CSM Approval.")
         
         # --- SLIDE 1: GENERATIVE SUMMARY ---
@@ -220,9 +237,7 @@ elif playbook == "2. Automated QBR Generator":
         }, index=weeks)
         
         st.line_chart(projection_chart_data)
-        st.caption(f"AI Note for CSM: The customer has established their own success criteria. Document the target of {target_adoption} triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")
-
-# --- PLAYBOOK 3: CONTEXTUAL RELEASE NOTES ---
+        st.caption(f"AI Note for CSM: The customer has established their own success criteria. Document the target of {target_adoption} triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")# --- PLAYBOOK 3: CONTEXTUAL RELEASE NOTES ---
 elif playbook == "3. Contextual Release Notes":
     st.title("Hyper-Personalized Release Notes")
     st.markdown("Driving feature adoption by reframing product updates into vertical-specific business outcomes and persona-driven value.")
