@@ -13,23 +13,7 @@ st.markdown("""
     .stButton>button {background-color: #2E86C1; color: white; border-radius: 5px; width: 100%;}
     .stButton>button:hover {background-color: #1B4F72;}
     .metric-card {background-color: #1E2129; padding: 20px; border-radius: 10px; border-left: 5px solid #2E86C1;}
-    
-    /* Force the Streamlit Slider to be Blue everywhere */
-    div.stSlider > div[data-baseweb="slider"] div[role="slider"] {
-        background-color: #2E86C1 !important;
-        border: none !important;
-        box-shadow: 0 0 0 2px #1E2129, 0 0 0 4px #2E86C1 !important;
-    }
-    div.stSlider > div[data-baseweb="slider"] div[role="slider"]:focus {
-        box-shadow: 0 0 0 2px #1E2129, 0 0 0 5px #2E86C1 !important;
-    }
-    div.stSlider > div[data-baseweb="slider"] > div > div > div:nth-child(1) {
-        background-color: rgba(46, 134, 193, 0.3) !important;
-    }
-    div.stSlider > div[data-baseweb="slider"] > div > div > div:nth-child(2) {
-        background-color: #2E86C1 !important;
-    }
-    </style>
+   
 """, unsafe_allow_html=True)
 
 # --- SIDEBAR NAVIGATION ---
