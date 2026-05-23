@@ -78,7 +78,7 @@ if playbook == "0. Executive Portfolio & Resume":
         st.write("My framework for transitioning teams from reactive check-ins to predictive defense.")
         
         # Embedded Gamma Site
-        components.iframe("https://architecting-scalable-cs-41xuyqd.gamma.site/", height=750, scrolling=True)
+        components.iframe("https://architecting-scalable-cs-41xuyqd.gamma.site/", height=750, width=100%, scrolling=True)
 
     with tab3:
         st.subheader("The Vision: Telemetry over Check-ins")
