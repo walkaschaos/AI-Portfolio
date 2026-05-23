@@ -246,6 +246,74 @@ elif playbook == "2. Automated QBR Generator":
         st.line_chart(projection_chart_data)
         st.caption(f"AI Note for CSM: The customer has established their own success criteria. Document the target of {target_adoption} triggers in Gainsight, and immediately send the Tier 3 expansion contract required to unlock that volume.")
 
+# --- PLAYBOOK 3: CONTEXTUAL RELEASE NOTES ---
+elif playbook == "3. Contextual Release Notes":
+    st.title("Hyper-Personalized Release Notes")
+    st.markdown("Driving feature adoption by reframing product updates into vertical-specific business outcomes and persona-driven value.")
+    st.divider()
+    
+    col1, col2 = st.columns([1, 1])
+    
+    with col1:
+        st.markdown("### 1. Select Engineering Update")
+        feature = st.radio("Raw Changelog:", [
+            "API Pipeline: Enabled multi-threaded querying. Latency reduced by 14ms.",
+            "Reporting: Added CRON scheduling. Users can export dashboards to PDF via automated triggers."
+        ])
+        
+        st.markdown("### 2. Define Audience Context")
+        industry = st.selectbox("Industry Vertical:", ["Healthcare / Medical", "FinTech / Banking", "Retail / E-Commerce"])
+        persona = st.selectbox("Target Persona:", ["Executive Sponsor (Focus: ROI & Strategy)", "Platform Admin (Focus: Ops & Setup)"])
+        
+    with col2:
+        st.markdown("### 3. AI Segmented Output")
+        
+        # --- Generative Logic Matrix ---
+        subject = ""
+        context = ""
+        value = ""
+        
+        if "API" in feature:
+            subject = "Platform Update: Faster Backend Performance"
+            if industry == "Healthcare / Medical":
+                context = "speeds up access to critical patient records" if "Executive" in persona else "enables multi-threaded querying for your EHR integrations"
+                value = "This means your clinical staff spends less time waiting on screens and more time on patient care, directly supporting your Q3 efficiency targets." if "Executive" in persona else "This drops latency by 14ms per call, completely eliminating the morning shift timeout errors your IT helpdesk has been fielding."
+            elif industry == "FinTech / Banking":
+                context = "accelerates transaction verification speeds" if "Executive" in persona else "optimizes our backend data pipeline for your secure financial workflows"
+                value = "This ensures your high-frequency trading pipelines never bottleneck during market hours, protecting your revenue stream from latency slippage." if "Executive" in persona else "This multi-threaded architecture drops payload latency by 14ms, meaning your automated compliance checks will run significantly faster during end-of-day reconciliation."
+            else: # Retail
+                context = "processes inventory data significantly faster" if "Executive" in persona else "upgrades our API endpoints to handle multi-threaded queries"
+                value = "This keeps your storefront perfectly synced with your warehouse during high-volume traffic spikes, preventing overselling and protecting your customer experience." if "Executive" in persona else "This 14ms latency reduction means your ERP syncing workflows won't throttle or time out during massive holiday inventory uploads."
+                
+        else: # Reporting feature
+            subject = "New Feature: Automated Dashboard Delivery"
+            if industry == "Healthcare / Medical":
+                context = "automates the delivery of compliance and audit dashboards" if "Executive" in persona else "adds CRON scheduling to the reporting module"
+                value = "You will now receive these critical regulatory overviews directly in your inbox every Monday, ensuring you have total visibility into HIPAA compliance without needing to log in." if "Executive" in persona else "You can now configure automated PDF exports for your department heads, saving you the hours you currently spend manually generating and emailing weekly utilization reports."
+            elif industry == "FinTech / Banking":
+                context = "automates the distribution of portfolio risk summaries" if "Executive" in persona else "enables CRON job scheduling for your audit dashboards"
+                value = "This ensures your executive team receives automated PDF tear-sheets of total exposure before the market opens, streamlining your daily risk assessments." if "Executive" in persona else "This means you can completely automate the Friday compliance reporting run, freeing up your afternoon and ensuring auditors get standardized formats automatically."
+            else: # Retail
+                context = "automates the delivery of weekend sales performance metrics" if "Executive" in persona else "adds automated CRON scheduling to the analytics suite"
+                value = "You'll now have a fully formatted PDF of your conversion rates and cart abandonment stats waiting in your inbox every Monday morning to drive your weekly strategy." if "Executive" in persona else "You can set up 'set-and-forget' PDF exports for your merchandising managers, eliminating those frantic Monday morning Slack requests for custom data pulls."
+
+        # Compile the final output
+        st.success(f"""
+        **Subject:** {subject}
+        
+        Hi [Name],
+        
+        I wanted to share a quick update we just pushed to production that {context}. 
+        
+        **Why this matters for you:**
+        {value}
+        
+        Let me know if you want to jump on a quick 10-minute call this week to review how to implement this for your team.
+        
+        Best,
+        Sacha
+        """)
+
 # --- PLAYBOOK 4: EARLY WARNING ADOPTION ---
 elif playbook == "4. Early Warning Adoption":
     st.title("Trigger-Based Micro-Training")
