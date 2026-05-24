@@ -42,11 +42,12 @@ if playbook == "Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
     
-    # The UX Anchor for Busy Execs
-    st.info("👈 Use the sidebar on the left to explore the interactive AI workflow examples")
-    
+ 
     st.write("🚀 I build the strategy, data & tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
+
+    # The UX Anchor for Busy Execs
+    st.info("👈 Use the sidebar on the left to explore the interactive AI workflow examples")
 
     tab1, tab2 = st.tabs(["Resume & Experience", "Strategy Playbook Demo"])
 
