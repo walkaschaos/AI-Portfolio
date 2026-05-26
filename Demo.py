@@ -69,12 +69,12 @@ if playbook == "Executive Portfolio & Resume":
     
     # Resume Download Logic
     try:
-        with open("Sacha_Laskow_Resume.pdf", "rb") as pdf_file:
+        with open("Sacha_Laskow_Resume_2026.pdf", "rb") as pdf_file:
             PDFbyte = pdf_file.read()
         st.download_button(
             label="📥 Download Full Resume (PDF)",
             data=PDFbyte,
-            file_name="Sacha_Laskow_Resume.pdf",
+            file_name="Sacha_Laskow_Resume_2026.pdf",
             mime="application/octet-stream"
         )
     except FileNotFoundError:
