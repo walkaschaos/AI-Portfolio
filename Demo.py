@@ -37,53 +37,65 @@ playbook = st.sidebar.radio("Navigation", [
     "5. C360 Account Summary"
 ])
 
-# --- EXECUTIVE PORTFOLIO & RESUME ---
-if playbook == "Executive Portfolio & Resume":
+# --- 0. EXECUTIVE PORTFOLIO & RESUME ---
+if playbook == "0. Executive Portfolio & Resume":
     st.title("Architecting Scalable Success in the Age of AI")
     st.markdown("### Customer Success isn’t just a function—it’s a growth engine.")
     
- 
-    st.write("🚀 I build the strategy, data & tooling architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
-    
     # The UX Anchor for Busy Execs
-    st.info("👈 Use the sidebar on the left to explore the interactive AI workflow examples")
-
+    st.info("👈 **Navigation Tip:** Use the sidebar on the left to explore the interactive AI workflows, automated QBR generation, and predictive health telemetry.")
+    
+    st.write("I build the strategy, Gainsight architecture, and enablement programs that allow enterprise teams to scale smarter. I blend data, automation, and AI to remove friction so CSMs can focus on what matters: driving adoption, expansion, and retention.")
     st.divider()
 
-    tab1 = st.tabs(["Resume & Experience"])
+    # --- NEW: HIGH IMPACT CASE STUDIES ---
+    st.subheader("Executive Impact & Case Studies")
+    st.markdown("""
+    **1. Predicting Churn Before the CRM (Boomi)**
+    * **The Problem:** Health scores were entirely reactive, relying on lagging indicators like login frequency.
+    * **The Play:** Deployed NLP-driven ingestion to analyze unstructured Gong transcripts and Zendesk sentiment.
+    * **The Impact:** Predicted churn risk with 80% accuracy up to 6 months in advance, directly enabling the CS team to secure **$1.2M in 'at-risk' expansion ARR**.
 
-    with tab1:
-        st.subheader("Customer Success Strategy & Ops Leader")
+    **2. Scaling the Long-Tail SMB Motion (Spare)**
+    * **The Problem:** Strategic CSMs were buried in low-tier account maintenance, capping their bandwidth for enterprise expansion.
+    * **The Play:** Architected a zero-touch CS segmentation model and automated digital onboarding nurtures.
+    * **The Impact:** Instantly freed up **15+ hours per week per strategic CSM**, allowing them to focus strictly on high-value engagements.
+    """)
+    
+    st.divider()
+
+    # --- RESUME SECTION ---
+    st.subheader("Customer Success Strategy & Ops Leader")
+    
+    # Resume Download Logic
+    try:
+        with open("Sacha_Laskow_Resume.pdf", "rb") as pdf_file:
+            PDFbyte = pdf_file.read()
+        st.download_button(
+            label="📥 Download Full Resume (PDF)",
+            data=PDFbyte,
+            file_name="Sacha_Laskow_Resume.pdf",
+            mime="application/octet-stream"
+        )
+    except FileNotFoundError:
+        st.warning("Resume PDF not found. (Note to self: Upload 'Sacha_Laskow_Resume.pdf' to the GitHub repository).")
         
-        # Resume Download Logic
-        try:
-            with open("Sacha_Laskow_Resume_2026.pdf", "rb") as pdf_file:
-                PDFbyte = pdf_file.read()
-            st.download_button(
-                label="📥 Download Full Resume (PDF)",
-                data=PDFbyte,
-                file_name="Sacha_Laskow_Resume_2026.pdf",
-                mime="application/octet-stream"
-            )
-        except FileNotFoundError:
-            st.warning("Resume PDF not found. (Note to self: Upload 'Sacha_Laskow_Resume.pdf' to the GitHub repository).")
-            
-        st.markdown("---")
-        st.markdown("### Customer Success Operations Manager • Spare")
-        st.markdown("*April 2026 – Present*")
-        st.markdown("""
-        * **Architected a new CS Segmentation model** to execute a new Scaled Success motion, automating legacy workflows to instantly free up 15+ hours per week per strategic CSM for high-value engagements.
-        * **Partnered with Forward Deployed Engineering** to launch an AI-driven C360 Customer Health dashboard, empowering the CS team with advanced adoption, expansion and churn risk telemetry.
-        * **Secured executive sponsorship** to overhaul post-sales infrastructure, bridging technical tooling with GTM strategy to drive seamless change management.
-        """)
+    st.markdown("---")
+    st.markdown("### Customer Success Operations Manager • Spare")
+    st.markdown("*April 2026 – Present*")
+    st.markdown("""
+    * **Architected a new CS Segmentation model** to execute a new Scaled Success motion, automating legacy workflows to instantly free up 15+ hours per week per strategic CSM for high-value engagements.
+    * **Partnered with Forward Deployed Engineering** to launch an AI-driven C360 Customer Health dashboard, empowering the CS team with advanced adoption, expansion and churn risk telemetry.
+    * **Secured executive sponsorship** to overhaul post-sales infrastructure, bridging technical tooling with GTM strategy to drive seamless change management.
+    """)
 
-        st.markdown("### Senior Manager, CS Ops & Strategy • Boomi")
-        st.markdown("*August 2022 – April 2026*")
-        st.markdown("""
-        * **Led enterprise Gainsight architecture and CS strategy**, driving a 50% YoY increase in expansion pipeline and a 30% YoY increase in expansion ARR.
-        * **Directed AI-driven retention initiatives**, deploying machine learning churn models (Reef.AI, Staircase.AI) that surfaced risk signals with 80% accuracy up to 6 months in advance.
-        * **Automated digital onboarding and adoption nurtures**, decreasing CSM manual workload by 8–10 hours per week while boosting quarterly product adoption by 20%.
-        """)
+    st.markdown("### Senior Manager, CS Ops & Strategy • Boomi")
+    st.markdown("*August 2022 – April 2026*")
+    st.markdown("""
+    * **Led enterprise Gainsight architecture and CS strategy**, driving a 50% YoY increase in expansion pipeline and a 30% YoY increase in expansion ARR.
+    * **Directed AI-driven retention initiatives**, deploying machine learning churn models (Reef.AI, Staircase.AI) that surfaced risk signals with 80% accuracy up to 6 months in advance.
+    * **Automated digital onboarding and adoption nurtures**, decreasing CSM manual workload by 8–10 hours per week while boosting quarterly product adoption by 20%.
+    """)
 
 # --- PLAYBOOK 1: PREDICTIVE HEALTH SCORE ---
 elif playbook == "1. Predictive Health Score":
