@@ -99,43 +99,54 @@ if playbook == "Executive Portfolio & Resume":
 
 # --- PLAYBOOK 1: PREDICTIVE HEALTH SCORE ---
 elif playbook == "1. Predictive Health Score":
-    st.title("Predictive Telemetry & Sentiment Engine")
-    st.markdown("Shifting from lagging CRM indicators to proactive, unstructured risk analysis.")
+    st.title("Predictive AI Health Score")
+    st.markdown("Moving from reactive lagging indicators to proactive sentiment analysis.")
     st.divider()
-
-    # THE IMPACT STORY (Addressing the Boss's Feedback)
+    
+    # --- EXECUTIVE IMPACT NARRATIVE ---
     st.markdown("### The Business Impact")
     st.info("""
     **The Problem:** Traditional health scores rely on lagging indicators (login frequency, ticket volume). By the time an account goes 'red', the decision to churn has already been made in private executive meetings. 
     
     **The Play:** I architected an NLP-driven ingestion engine that analyzed unstructured data from Gong transcripts, Zendesk tickets, and email velocity to detect sentiment degradation before it hit the CRM.
     
-    **The Impact:** Surfaced hidden churn risks with 80% accuracy up to 6 months in advance, enabling the CS team to proactively secure $1.2M in 'at-risk' expansion ARR at Boomi.
+    **The Impact:** Surfaced hidden churn risks with 80% accuracy up to 6 months in advance, enabling the CS team to proactively secure **$1.2M in 'at-risk' expansion ARR** at Boomi.
     """)
-    
     st.markdown("---")
-    st.markdown("### Interactive Artifact: Unstructured Sentiment Analysis")
-    st.markdown("Paste a simulated email from an executive sponsor below to see how the engine extracts sentiment, identifies churn risk, and automatically drafts the Gainsight CTA.")
-
-    sample_text = "Hi team, we've been running into persistent latency issues with the API over the last three weeks. My leadership is asking for an ROI breakdown before our Q3 renewal. I need to understand why this keeps happening."
     
-    user_input = st.text_area("Client Communication (Email / Ticket / Transcript):", value=sample_text, height=100)
+    col1, col2 = st.columns([1, 1])
     
-    if st.button("Run Telemetry Analysis"):
-        with st.spinner("Analyzing unstructured text via LLM..."):
-            import time
-            time.sleep(1.5)
+    with col1:
+        st.subheader("LLM Sentiment Ingestion Engine")
+        sentiment = st.slider("Simulate average tone across Support Tickets & Call Transcripts:", 0, 100, 80)
+        
+        # Dynamic HTML Health Bar (Margin adjusted to 5px to prevent clipping)
+        bar_color = "#2ECC71" if sentiment > 70 else "#F1C40F" if sentiment > 40 else "#E74C3C"
+        st.markdown(f"""
+            <div style="width: 100%; background-color: #1E2129; border-radius: 5px; margin-top: 5px; margin-bottom: 20px;">
+                <div style="width: {sentiment}%; height: 12px; background-color: {bar_color}; border-radius: 5px; transition: width 0.3s, background-color 0.3s;"></div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("**Recent Simulated Ticket Text:**")
+        if sentiment > 70:
+            st.info(""" "Recent engagement data indicates a strong positive shift in account sentiment following the Q3 release. During a routine check-in call last Thursday, the primary platform admin explicitly noted that the new reporting dashboard is 'fantastic' and has directly eliminated their need for manual CSV exports—estimating a time savings of roughly 3 hours per week for their analytics team. This qualitative feedback is corroborated by product telemetry, which shows a 400% week-over-week increase in dashboard interaction by this account. Furthermore, a minor Zendesk ticket regarding a UI bug was resolved in under 2 hours, resulting in a 5/5 CSAT score and a follow-up email from their VP of Operations praising the support team's rapid responsiveness." """)
+        elif sentiment > 40:
+            st.warning(""" "Telemetry analysis over the past 14 days indicates an emerging adoption bottleneck within this account's middle-management tier, specifically regarding the Q3 reporting update. A recent Zendesk ticket explicitly stated, 'I am having some trouble finding the export button. Can you point me to the docs?' This qualitative friction is supported by backend product usage data, which shows the user abandoned the export workflow three times prior to submitting the ticket. Additionally, Staircase.AI sentiment analysis on recent email threads indicates a mild increase in frustration markers compared to last quarter, and recent Gong call snippets highlight confusion around the new UI layout. While overall license utilization remains stable, this localized friction presents an early-warning adoption risk. Recommending immediate deployment of contextual micro-training to the affected user cohort to accelerate time-to-value and prevent sentiment degradation." """)
+        else:
+            st.error(""" "Urgent churn risk detected. Telemetry and unstructured communication data indicate a severe degradation in account health over the past 30 days, primarily driven by infrastructure reliability. A Priority 1 support ticket was opened yesterday by their CTO explicitly stating, 'This is the third time the API has timed out this month. We are evaluating other vendors.' This qualitative escalation correlates directly with our backend telemetry, which confirms three distinct periods of elevated API latency exceeding contracted SLA thresholds. Furthermore, Staircase.AI sentiment tracking on the resulting email thread triggered a 'Flight Risk' alert, and a Gong transcript from last week's technical sync captured their Engineering Lead requesting a full export of historical data—a highly predictive leading indicator of competitor migration. With high-value ARR at stake and the renewal window rapidly closing, standard engagement playbooks must be bypassed. Recommending immediate executive alignment and an emergency technical post-mortem with our Product Engineering team to salvage the relationship." """)
             
-        st.subheader("Diagnostic Output")
-        
-        col1, col2, col3 = st.columns(3)
-        col1.metric("Overall Sentiment", "Negative", "-1.2")
-        col2.metric("Churn Risk Level", "High (82%)", "Renewal Q3")
-        col3.metric("Key Friction Point", "API Latency", "Technical")
-        
-        st.markdown("**Extracted Keywords:** `persistent latency`, `leadership asking for ROI`, `Q3 renewal`")
-        
-        st.warning("⚠️ **Automated System Action:** Gainsight CTA triggered for CSM. 'Executive alignment required regarding API stability prior to Q3 renewal discussions.'")
+    with col2:
+        st.subheader("Dynamic Health Output")
+        if sentiment > 70:
+            st.metric(label="Account Status", value="Healthy", delta="Low Churn Risk")
+            st.success("CSM Action: Monitor normally. Add to advocacy pipeline.")
+        elif sentiment > 40:
+            st.metric(label="Account Status", value="At Risk - Friction Detected", delta="-15 Sentiment Drop", delta_color="inverse")
+            st.warning("CSM Action: Send targeted enablement collateral regarding export features.")
+        else:
+            st.metric(label="Account Status", value="Critical - Executive Escalation", delta="-45 Sentiment Drop", delta_color="inverse")
+            st.error("CSM Action: AI Playbook triggered. Immediate executive alignment call scheduled. Renewal flagged.")
 
 # --- PLAYBOOK 2: AUTOMATED QBR GENERATOR ---
 elif playbook == "2. Automated QBR Generator":
